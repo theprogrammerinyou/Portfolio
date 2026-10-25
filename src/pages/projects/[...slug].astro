@@ -1,7 +1,8 @@
 ---
 import { getCollection } from "astro:content";
 import Layout from "../../layouts/Layout.astro";
-// 1. Generate a new path for every collection entry
+import ButtonLink from "../../components/ButtonLink.astro";
+
 export async function getStaticPaths() {
   const blogEntries = await getCollection("project");
   return blogEntries.map((entry) => ({
@@ -9,91 +10,46 @@ export async function getStaticPaths() {
     props: { entry },
   }));
 }
-// 2. When it's time to render, you can get the entry directly from the prop
+
 const { entry } = Astro.props;
 const { Content } = await entry.render();
 ---
 
 <Layout title={`Shivansh Shukla | ${entry.data.title}`}>
-  <div class="text-center">
-    <h1 class="md:text-3xl text-xl font-bold">{entry.data.title}</h1>
-    <p class="text-gray-400">{new Date(entry.data.timestamp).toDateString()}</p>
-    <div class="flex gap-2 mt-3 flex-wrap justify-center">
-      {
-        entry.data.tags.map((tag: string) => {
-          return (
-            <span class="rounded-md px-2 py-1 text-xs font-semibold border border-terminal-green items-center flex justify-center shadow-lg whitespace-nowrap">
-              {tag}
-            </span>
-          );
-        })
-      }
-    </div>
-    <img
-      src={entry.data.image.src}
-      alt={entry.data.image.alt}
-      class="mt-4 rounded-md"
-    />
-  </div>
-  <div class="flex mt-4 flex-wrap">
+  <a href="/projects" class="text-sm text-mist/60 hover:text-lime">← All work</a>
+  <div class="mt-6 overflow-hidden rounded-[2rem] border border-white/10">
     {
-      entry.data.demoLink && (
-        <a
-          href={entry.data.demoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          class="transition-all cursor-pointer text-white bg-gradient-to-r from-green-500 via-green-600 to-green-700 hover:bg-gradient-to-br focus:ring-4 focus:outline-none focus:ring-blue-300 dark:focus:ring-blue-800 font-medium rounded-md text-sm px-5 py-2.5 text-center mr-2 mb-2 flex items-center"
-        >
-          Link to Demo
-        </a>
+      entry.data.image.src && (
+        <img
+          src={entry.data.image.src}
+          alt={entry.data.image.alt}
+          class="max-h-[420px] w-full object-cover"
+        />
       )
     }
+  </div>
+  <p class="mt-6 font-mono text-xs uppercase tracking-[0.2em] text-aqua">
+    {new Date(entry.data.timestamp).toDateString()}
+  </p>
+  <h1 class="mt-2 font-display text-4xl font-bold">{entry.data.title}</h1>
+  <div class="mt-4 flex flex-wrap gap-2">
+    {
+      entry.data.tags.map((tag: string) => (
+        <span class="rounded-full border border-white/10 px-3 py-1 text-xs text-mist/70">
+          {tag}
+        </span>
+      ))
+    }
+  </div>
+  <div class="mt-6 flex flex-wrap gap-3">
+    {entry.data.demoLink && <ButtonLink label="Live demo" link={entry.data.demoLink} />}
     {
       entry.data.codeLink && (
-        <a
-          href={entry.data.codeLink}
-          target="_blank"
-          class="relative cursor-pointer inline-flex items-center justify-center p-0.5 mb-2 mr-2 overflow-hidden text-sm font-medium text-gray-900 rounded-lg group bg-gradient-to-br from-green-500 to-green-500 group-hover:from-cyan-500 group-hover:to-blue-500 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-cyan-200 dark:focus:ring-cyan-800"
-          rel="noopener noreferrer"
-        >
-          <span class="relative px-3 py-2.5 transition-all ease-in duration-75 bg-white dark:bg-gray-900 rounded-md group-hover:bg-opacity-0 flex items-center">
-            <img
-              src="/images/github-icon.svg"
-              alt="github logo"
-              class="w-6 h-6 github-icon mr-3"
-            />
-            Link to Code
-          </span>
-        </a>
+        <ButtonLink label="Source" link={entry.data.codeLink} variant="ghost" />
       )
     }
   </div>
-  <div class="mt-6 prose w-full max-w-full">
+  <div class="prose mt-10 max-w-none">
     <Content />
   </div>
-  <a
-    href="/projects"
-    class="text-white px-2 py-2 border border-slate-400 rounded-md flex items-center justify-center hover:bg-slate-400 transition duration-150 ease-in-out hover:text-black mt-4 w-fit"
-  >
-    <svg
-      xmlns="http://www.w3.org/2000/svg"
-      fill="none"
-      viewBox="0 0 24 24"
-      stroke-width="1.5"
-      stroke="currentColor"
-      class="w-4 h-4 mr-2"
-    >
-      <path
-        stroke-linecap="round"
-        stroke-linejoin="round"
-        d="M10.5 19.5L3 12m0 0l7.5-7.5M3 12h18"></path>
-    </svg>
-    Back
-  </a>
 </Layout>
-<style>
-  .github-icon {
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(327deg)
-      brightness(109%) contrast(103%);
-  }
-</style>

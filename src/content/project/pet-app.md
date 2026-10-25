@@ -1,15 +1,17 @@
 ---
-title: Pet Care
+title: PetPaw
 tags: [React Native, NodeJS, ExpressJS, MongoDB]
 image:
   src: /images/pet.png
-  alt: "pet-app"
+  alt: PetPaw mobile app
 timestamp: 2023-12-10
-description: A pet care where you can take complete care of your pet. It also has a social media integration named Pet Community. Do give it a read to know about it the app, its is one of the interesting projects that i am currently working on.
+featured: true
+description: A mobile pet-care hub that combines service bookings, shopping, health reminders, pet profiles, and a friendly community space for pet parents.
 codeLink: https://github.com/theprogrammerinyou/Pet_App
 ---
 
-<iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="800" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FqVJLLGNNAJkQF5w6WAaxN7%2FFigma-basics%3Ftype%3Ddesign%26node-id%3D0%253A286%26mode%3Ddesign%26t%3DBmgfaawhv7Y7YBDn-1" allowfullscreen></iframe>
+PetPaw brings the messy checklist of pet parenting into one mobile experience. A user can book vet visits, walks, grooming, or boarding, shop for food and accessories, and keep a dedicated profile for each pet with reminders for the things that are easy to forget.
 
+The social layer, Pet Community, gives the product warmth beyond transactions: pet parents can share photos, discover people nearby, and pick up approachable guidance when they are new to caring for an animal. I designed it as a companion app rather than a collection of separate utilities, so the important actions stay close together.
 
-A one stop destination for managing your pet needs. You can book vet appointments, book services such as pet walking, pet grooming, pet boarding. You can also shop accessories such as food, meds for your pet. This app is one stop destination to manage all your pets at one place and also build profiles for each pet and set timely reminders for consulation or any other help that you need. The app also has a social media integration called Pet Community, where you can post some cute picutes of your pet and also meet like minded Pet parents and learn more about pets if you are new parent.
+**Stack:** React Native, Node.js, Express, MongoDB.

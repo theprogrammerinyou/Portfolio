@@ -1,6 +1,36 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import ButtonLink from "../components/ButtonLink.astro";
 ---
 
 <Layout title="Shivansh Shukla | Contact">
+  <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">Contact</p>
+  <h1 class="mt-2 font-display text-4xl font-bold">Let’s build the next loop.</h1>
+  <p class="mt-4 max-w-xl text-mist/75">
+    Open to product engineering roles where UI, systems, and applied AI meet.
+    Based in Hyderabad.
+  </p>
+  <div class="mt-10 grid gap-4 md:grid-cols-2">
+    <a class="glass rounded-3xl p-6 transition hover:border-lime/40" href="mailto:theshivanshshukla@gmail.com">
+      <p class="text-xs uppercase tracking-widest text-aqua">Email</p>
+      <p class="mt-2 text-lg">theshivanshshukla@gmail.com</p>
+    </a>
+    <a
+      class="glass rounded-3xl p-6 transition hover:border-lime/40"
+      href="https://github.com/theprogrammerinyou"
+      target="_blank"
+      rel="noreferrer"
+    >
+      <p class="text-xs uppercase tracking-widest text-aqua">GitHub</p>
+      <p class="mt-2 text-lg">theprogrammerinyou</p>
+    </a>
+  </div>
+  <div class="mt-8 flex flex-wrap gap-3">
+    <ButtonLink label="Download resume" link="/ShivanshBResume.pdf" />
+    <ButtonLink
+      label="LinkedIn"
+      link="https://www.linkedin.com/in/shivansh-s-472710134/"
+      variant="ghost"
+    />
+  </div>
 </Layout>

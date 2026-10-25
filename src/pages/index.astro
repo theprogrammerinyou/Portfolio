@@ -1,152 +1,194 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { Image } from "@astrojs/image/components";
 import ButtonLink from "../components/ButtonLink.astro";
+import ProjectCard from "../components/ProjectCard.astro";
+import NeuralField from "../components/NeuralField";
 import { getCollection } from "astro:content";
-let recent_projects = await getCollection("project");
-recent_projects = recent_projects
-  .sort((a, b) => {
-    return (
-      new Date(b.data.timestamp).getTime() -
-      new Date(a.data.timestamp).getTime()
-    );
-  })
-  .slice(0, 5);
+
+const projects = (await getCollection("project")).sort(
+  (a, b) =>
+    new Date(b.data.timestamp).getTime() - new Date(a.data.timestamp).getTime()
+);
+const featured = projects.filter((p) => p.data.featured).slice(0, 4);
+
+const skills = [
+  "TypeScript",
+  "React / Next.js",
+  "React Native",
+  "Node.js",
+  ".NET",
+  "Redux",
+  "PostgreSQL",
+  "MongoDB",
+  "Redis",
+  "OpenSearch",
+  "RAG / LLMs",
+  "OCR + WebSockets",
+];
 ---
 
-<Layout title="Shivansh Shukla">
-  <div
-    class="flex md:flex-row gap-16 items-center flex-col justify-center mt-0 md:mt-6">
-    <!-- hero description -->
-    <div class="flex-[3] flex flex-col">
-      <h1
-        class="typewrite text-3xl font-bold text-terminal-green md:inline-flex hidden w-fit">
-        Shivansh_Shukla
+<Layout title="Shivansh Shukla · Engineer">
+  <section class="relative overflow-hidden rounded-[2rem] border border-white/10 px-6 py-14 md:px-12 md:py-20">
+    <NeuralField client:load />
+    <div class="relative z-10 max-w-2xl">
+      <p class="font-mono text-xs uppercase tracking-[0.28em] text-aqua">
+        Hyderabad · Full-stack · AI-aware
+      </p>
+      <h1 class="mt-4 font-display text-4xl font-extrabold leading-tight md:text-6xl">
+        I ship interfaces that think in systems.
       </h1>
-      <p class="mt-2 text-center md:text-left">
-        Full-Stack Developer
+      <p class="mt-5 max-w-xl text-lg leading-relaxed text-mist/80">
+        I’m Shivansh Shukla, a full-stack product engineer with 5+ years of
+        experience, currently building at Inspire Brands. I turn fuzzy ideas into
+        polished web and mobile products — from real-time IoT controls and pet-care
+        flows to high-performance portals and OCR-powered learning tools. My usual
+        toolkit is React, React Native, Node.js, .NET, and the databases, search,
+        cloud, and AI layers that make an experience feel alive.
       </p>
-      <p class="mt-2 text-center md:text-left">
-        Enjoys watching Netflix, Coding, and playing, listening music
+      <div class="mt-8 flex flex-wrap gap-3">
+        <ButtonLink label="View resume" link="/ShivanshBResume.pdf" />
+        <ButtonLink label="Explore work" link="/projects" variant="ghost" />
+      </div>
+    </div>
+    <div class="hero-orbit hero-orbit-one" aria-hidden="true"></div>
+    <div class="hero-orbit hero-orbit-two" aria-hidden="true"></div>
+  </section>
+
+  <section class="mt-8 overflow-hidden rounded-2xl border border-white/10 bg-white/[0.035] py-3">
+    <div class="ticker-track font-mono text-xs uppercase tracking-[0.2em] text-mist/65">
+      <span>Product thinking</span><i>✦</i><span>Frontend craft</span><i>✦</i><span>Mobile experiences</span><i>✦</i><span>APIs &amp; systems</span><i>✦</i><span>Search &amp; AI</span><i>✦</i>
+      <span>Product thinking</span><i>✦</i><span>Frontend craft</span><i>✦</i><span>Mobile experiences</span><i>✦</i><span>APIs &amp; systems</span><i>✦</i><span>Search &amp; AI</span><i>✦</i>
+    </div>
+  </section>
+
+  <section class="mt-16" id="work">
+    <div class="max-w-3xl">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-aqua">Work history</p>
+      <h2 class="mt-2 font-display text-3xl font-bold">Built in teams. Owned in production.</h2>
+      <p class="mt-3 leading-relaxed text-mist/70">
+        Five-plus years of full-stack work across customer-facing products, internal
+        platforms, cloud infrastructure, and AI-enabled workflows. I like the hard
+        part after launch too: making systems faster, more reliable, and easier for
+        the next engineer to own.
       </p>
-      <br />
-      <ButtonLink
-        label="View CV"
-        link="/ShivanshShukla.pdf"
-        className={"font-bold mt-4 self-center md:self-start"}
-      />
     </div>
-
-    <!-- hero image -->
-    <div class="flex-[2]">
-      <Image
-        alt="hero"
-        src="/images/shivansh.jpg"
-        class="hero-img"
-        width={384 * 2}
-        height={512 * 2}
-      />
-    </div>
-  </div>
-
-  <!-- recent projects -->
-  <div
-    class="mt-8 text-2xl font-bold text-white flex gap-2 items-center justify-between">
-    <span>
-      Recent
-      <span class="text-terminal-green">Projects</span>
-    </span>
-    <div class="text-sm">
-      <a href="/projects">View all Projects →</a>
-    </div>
-  </div>
-  <div class="mt-4 flex flex-col gap-4">
-    {
-      recent_projects.map((project) => {
-        const { data } = project;
-        return (
-          <div class="flex rounded-md md:items-center border-2 border-terminal-green/50 p-4 flex-col gap-8 md:flex-row items-center hover:-translate-y-1 transition-all ">
-            <div class="flex-[3]">
-              <Image
-                alt={data.image.alt!}
-                src={data.image.src!}
-                width={385}
-                height={190}
-                width={385 * 2}
-                height={190 * 2}
-                class="object-contain rounded-md w-full p-2 shadow-xl"
-              />
-            </div>
-            <div class="flex flex-col flex-[5] justify-center md:items-start items-center gap-x-8 ">
-              <div class="flex gap-2 md:flex-row flex-col items-center flex-wrap">
-                <h2 class="text-xl font-semibold text-center">{data.title}</h2>
-                <div class="flex gap-2 flex-wrap justify-center">
-                  {data.tags.map((tag: string) => {
-                    return (
-                      <span class="rounded-md px-2 py-1 text-xs font-semibold border border-terminal-green items-center flex justify-center shadow-lg whitespace-nowrap">
-                        {tag}
-                      </span>
-                    );
-                  })}
-                </div>
-              </div>
-              <p class="text-gray-400 text-sm mt-3 md:mt-2 inline-flex">
-                {new Date(data.timestamp).toDateString()}
-              </p>
-              <p class="text-gray-200 mt-4">
-                {data.description}
-                <a
-                  class="text-terminal-green underline underline-offset-2"
-                  href={"/projects/" + project.slug}>
-                  Learn more
-                </a>
-              </p>
-            </div>
+    <div class="timeline mt-10 grid gap-6">
+      <article class="timeline-card glass relative rounded-3xl p-7 md:p-8">
+        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.18em] text-lime">Apr 2024 - Present</p>
+            <h3 class="mt-2 font-display text-2xl font-bold">Inspire Brands Pvt Ltd</h3>
+            <p class="mt-1 text-sm text-mist/60">Full Stack Developer · Hyderabad, India</p>
           </div>
-        );
-      })
-    }
-  </div>
+          <div class="flex flex-wrap gap-2 text-xs text-mist/70"><span class="work-pill">.NET</span><span class="work-pill">React</span><span class="work-pill">Java & Python</span><span class="work-pill">Azure</span></div>
+        </div>
+        <ul class="mt-6 grid gap-3 text-sm leading-relaxed text-mist/80 md:grid-cols-2">
+          <li>Integrated ServiceNow and Power BI into a React admin portal, improving page load time 10-15% with API caching.</li>
+          <li>Built three AI agents and an MCP server, enabling product and cross-functional teams to create epics and Jira stories independently.</li>
+          <li>Owned production support for .NET and Python systems and mentored engineers on AKS, Kubernetes, ArgoCD, GitOps, and distributed systems.</li>
+          <li>Cut RBAC user-management API time from 60s to 6s and portal load from 40-50s to 2s for 100 concurrent users.</li>
+        </ul>
+      </article>
+      <article class="timeline-card glass relative rounded-3xl p-7 md:p-8">
+        <div class="flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+          <div>
+            <p class="font-mono text-xs uppercase tracking-[0.18em] text-aqua">Jun 2021 - Apr 2024</p>
+            <h3 class="mt-2 font-display text-2xl font-bold">Adapt Ideations</h3>
+            <p class="mt-1 text-sm text-mist/60">Full Stack Developer · Hyderabad, India</p>
+          </div>
+          <div class="flex flex-wrap gap-2 text-xs text-mist/70"><span class="work-pill">React</span><span class="work-pill">React Native</span><span class="work-pill">Node.js</span><span class="work-pill">AWS</span></div>
+        </div>
+        <ul class="mt-6 grid gap-3 text-sm leading-relaxed text-mist/80 md:grid-cols-2">
+          <li>Used customer feedback and Smartlook heatmaps to improve UX, then shaped a consistent, mobile-responsive MUI design system.</li>
+          <li>Delivered RBAC, SSO, and Keycloak integration to make access management simpler and stronger.</li>
+          <li>Built a cross-platform React Native app and real-time notifications with WebSockets, plus i18n for multi-market releases.</li>
+          <li>Reduced page loads to under 3s and cut Excel/PDF report downloads from 30s to 2s through focused performance work.</li>
+        </ul>
+      </article>
+    </div>
+  </section>
+
+  <section class="mt-20 grid gap-8 md:grid-cols-[1.1fr_0.9fr]">
+    <div class="glass rounded-3xl p-8">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">How I work</p>
+      <h2 class="mt-2 font-display text-3xl font-bold">From signal to shipped.</h2>
+      <p class="mt-5 leading-relaxed text-mist/80">
+        I start with the user journey and the system constraints together. That
+        means a fast, polished UI is only the beginning: I care about real-time
+        feedback, resilient APIs, useful data, and handing a maintainable product
+        back to the team.
+      </p>
+      <p class="mt-4 text-sm leading-relaxed text-mist/65">
+        Recent work spans portal performance, identity and access, cloud services,
+        AI agents, mobile workflows, and the operational details that keep all of it steady.
+      </p>
+    </div>
+    <div class="glass rounded-3xl p-8">
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">Stack</p>
+      <h2 class="mt-2 font-display text-3xl font-bold">Languages I think in</h2>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {
+          skills.map((skill) => (
+            <span class="rounded-full border border-white/10 bg-white/5 px-3 py-1.5 text-sm text-mist/80">
+              {skill}
+            </span>
+          ))
+        }
+      </div>
+      <p class="mt-6 text-sm text-mist/70">
+        B.E. Computer Engineering, Holy Mary Institute of Technology · CGPA 7.05
+      </p>
+    </div>
+  </section>
+
+  <section class="mt-20" id="projects">
+    <div class="flex items-end justify-between gap-4">
+      <div>
+        <p class="font-mono text-xs uppercase tracking-[0.2em] text-lime">Selected projects</p>
+        <h2 class="mt-2 font-display text-3xl font-bold">Things I made to solve real problems.</h2>
+        <p class="mt-3 max-w-2xl text-mist/70">
+          These are hands-on product builds across web, mobile, developer tools,
+          and connected systems. Each one starts with a real user need, then pairs
+          a practical technical foundation with an interface that is easy to trust.
+        </p>
+      </div>
+      <a href="/projects" class="text-sm text-mist/70 hover:text-lime">All projects →</a>
+    </div>
+    <div class="mt-8 grid gap-6 md:grid-cols-2">
+      {
+        featured.map((project) => (
+          <ProjectCard
+            title={project.data.title}
+            description={project.data.description}
+            tags={project.data.tags}
+            imageSrc={project.data.image.src}
+            imageAlt={project.data.image.alt}
+            href={"/projects/" + project.slug}
+            timestamp={project.data.timestamp}
+            featured={project.data.featured}
+          />
+        ))
+      }
+    </div>
+  </section>
+
+  <section class="mt-20 grid gap-8 md:grid-cols-[0.85fr_1.15fr]">
+    <div class="relative overflow-hidden rounded-3xl border border-violet/30 bg-violet/10 p-8">
+      <div class="hobby-spark hobby-spark-a" aria-hidden="true">✦</div>
+      <div class="hobby-spark hobby-spark-b" aria-hidden="true">✷</div>
+      <p class="font-mono text-xs uppercase tracking-[0.2em] text-aqua">Beyond the build</p>
+      <h2 class="mt-2 font-display text-3xl font-bold">Curiosity is part of the stack.</h2>
+      <p class="mt-4 max-w-md leading-relaxed text-mist/75">
+        When I am away from a keyboard, I’m usually chasing a new film, exploring
+        a place with a camera, leveling up at a game, or pulling apart a product
+        just to understand why it feels good to use.
+      </p>
+    </div>
+    <div class="grid gap-4 sm:grid-cols-2">
+      <article class="hobby-card hobby-card-a"><span>🎬</span><h3>Movies &amp; stories</h3><p>I love a great interface, but I’m equally drawn to great world-building.</p></article>
+      <article class="hobby-card hobby-card-b"><span>📷</span><h3>Exploring &amp; photography</h3><p>New places, tiny details, and the occasional perfectly timed photo.</p></article>
+      <article class="hobby-card hobby-card-c"><span>🎮</span><h3>Games &amp; mechanics</h3><p>A playground for feedback loops, systems design, and a little competition.</p></article>
+      <article class="hobby-card hobby-card-d"><span>🧪</span><h3>Side-project rabbit holes</h3><p>Trying tools, making small experiments, and learning by shipping.</p></article>
+    </div>
+  </section>
 </Layout>
-
-<style>
-  .typewrite {
-    position: relative;
-  }
-  .typewrite::after {
-    --width: 13px;
-    content: "";
-    width: var(--width);
-    right: calc(var(--width) * -1 - 5px);
-    top: 0;
-    bottom: 0;
-    background-color: #01f53f;
-    position: absolute;
-    animation: blink 900ms steps(2, start) infinite;
-  }
-  @keyframes blink {
-    to {
-      visibility: hidden;
-    }
-  }
-
-  @keyframes about-radius {
-    0% {
-      border-radius: 63% 37% 27% 73% / 66% 47% 53% 34%;
-    }
-    30% {
-      border-radius: 25% 75% 16% 84% / 79% 21% 79% 21%;
-    }
-    60% {
-      border-radius: 34% 66% 57% 43% / 40% 31% 69% 60%;
-    }
-    100% {
-      border-radius: 63% 37% 27% 73% / 66% 47% 53% 34%;
-    }
-  }
-  .hero-img {
-    position: relative;
-    animation: about-radius infinite 4s ease-in-out;
-    box-shadow: 0px 0px 100px #01f53e64;
-  }
-</style>

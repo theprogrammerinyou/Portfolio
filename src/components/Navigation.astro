@@ -1,68 +1,50 @@
 ---
-import NavItem from "./NavItem.astro";
 import Hamburger from "./Hamburger";
+
 const links = [
-  {
-    label: "projects",
-    link: "/projects",
-  },
+  { label: "Work", link: "/#work" },
+  { label: "Projects", link: "/projects" },
+  { label: "Contact", link: "/contact" },
 ];
 ---
 
-<div class="w-full">
-  <nav
-    class="lg:max-w-screen-lg text-white flex mx-auto items-end py-4 w-fit md:w-full max-w-screen-sm"
-  >
-    <a href="/" class="md:text-3xl text-2xl text-terminal-green font-bold">
-      theShivanshShukla()
+<header class="sticky top-0 z-40 border-b border-white/5 bg-ink/70 backdrop-blur-xl">
+  <nav class="mx-auto flex max-w-6xl items-center px-5 py-4 md:px-8">
+    <a href="/" class="font-display text-lg font-bold tracking-tight text-white md:text-xl">
+      Shivansh<span class="text-lime">.</span>
     </a>
-    <ul class="gap-4 hidden md:flex ml-8">
+    <ul class="ml-10 hidden items-center gap-7 md:flex">
       {
-        links.map((link) => {
-          return <NavItem label={link.label} link={link.link} />;
-        })
+        links.map((link) => (
+          <li>
+            <a
+              href={link.link}
+              class="text-sm text-mist/70 transition hover:text-lime"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))
       }
     </ul>
-    <ul class="ml-auto hidden md:flex gap-3">
+    <div class="ml-auto hidden items-center gap-4 md:flex">
       <a
         href="https://github.com/theprogrammerinyou"
         target="_blank"
         rel="noreferrer"
+        class="text-sm text-mist/70 hover:text-white"
       >
-        <img
-          src="/images/github-icon.svg"
-          alt="GitHub Icon"
-          class="social-icon"
-        />
+        GitHub
       </a>
       <a
         href="https://www.linkedin.com/in/shivansh-s-472710134/"
         target="_blank"
         rel="noreferrer"
+        class="rounded-full border border-lime/40 bg-lime/10 px-4 py-1.5 text-sm text-lime transition hover:bg-lime hover:text-ink"
       >
-        <img
-          src="/images/linkedin-icon.svg"
-          alt="LinkedIn Icon"
-          class="social-icon"
-        />
+        LinkedIn
       </a>
-    </ul>
-    <Hamburger client:load links={links} className="md:hidden ml-8" />
+    </div>
+    <Hamburger client:load links={links} className="ml-auto md:hidden" />
   </nav>
-</div>
-
-<style>
-  .social-icon {
-    font-size: 2.5rem;
-    width: 35px !important;
-    height: 35px !important;
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(327deg)
-      brightness(109%) contrast(103%);
-    transition: filter 300ms;
-    cursor: pointer;
-  }
-  .social-icon:hover {
-    filter: invert(53%) sepia(89%) saturate(1045%) hue-rotate(90deg)
-      brightness(115%) contrast(111%);
-  }
-</style>
+</header>

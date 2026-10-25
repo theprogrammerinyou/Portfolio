@@ -1,37 +1,41 @@
 ---
-import "@fontsource/space-mono";
+import "../styles/global.css";
 import Navigation from "../components/Navigation.astro";
 import Footer from "../components/Footer.astro";
+
 export interface Props {
   title: string;
+  description?: string;
 }
 
-const { title } = Astro.props;
+const {
+  title,
+  description = "Shivansh Shukla — full-stack engineer building product, systems, and AI-assisted experiences.",
+} = Astro.props;
 ---
 
 <!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="generator" content={Astro.generator} />
+    <meta name="description" content={description} />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Outfit:wght@300;400;500;600;700&family=Syne:wght@600;700;800&display=swap"
+      rel="stylesheet"
+    />
     <title>{title}</title>
   </head>
-  <body>
+  <body class="antialiased">
+    <div class="noise" aria-hidden="true"></div>
     <Navigation />
-    <div class="lg:max-w-screen-lg mx-auto py-4 px-8 lg:px-0">
+    <main class="relative z-10 mx-auto w-full max-w-6xl px-5 pb-16 pt-8 md:px-8">
       <slot />
       <Footer />
-    </div>
+    </main>
   </body>
 </html>
-<style is:global>
-  html {
-    background-color: #0d0208;
-  }
-  * {
-    font-family: "Space Mono", monospace;
-    color: white;
-  }
-</style>

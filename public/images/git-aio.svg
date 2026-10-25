@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#0d1117"/>
+  <circle cx="400" cy="225" r="90" stroke="#b6ff4a" stroke-width="10"/>
+  <circle cx="400" cy="140" r="16" fill="#5ce1ff"/>
+  <circle cx="400" cy="310" r="16" fill="#9b7dff"/>
+  <circle cx="490" cy="225" r="16" fill="#b6ff4a"/>
+  <text x="400" y="60" text-anchor="middle" fill="white" font-size="32" font-family="ui-sans-serif, system-ui">Git All-in-One</text>
+</svg>

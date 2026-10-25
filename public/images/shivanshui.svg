@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#0b1020"/>
+  <rect x="120" y="120" width="160" height="80" rx="16" fill="#b6ff4a"/>
+  <rect x="300" y="120" width="160" height="80" rx="40" stroke="#5ce1ff" stroke-width="4"/>
+  <rect x="480" y="120" width="200" height="80" rx="12" fill="#9b7dff"/>
+  <rect x="120" y="230" width="560" height="90" rx="20" stroke="white" stroke-opacity=".3"/>
+  <text x="400" y="80" text-anchor="middle" fill="white" font-size="32" font-family="ui-sans-serif, system-ui">ShivanshUI</text>
+</svg>

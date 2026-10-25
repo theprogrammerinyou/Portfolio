@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 450" fill="none">
+  <rect width="800" height="450" fill="#0d1214"/>
+  <circle cx="110" cy="85" r="180" fill="#5ce1ff" fill-opacity=".11"/>
+  <circle cx="700" cy="410" r="220" fill="#b6ff4a" fill-opacity=".1"/>
+  <rect x="277" y="60" width="246" height="330" rx="38" fill="#151d20" stroke="#5ce1ff" stroke-width="4"/>
+  <rect x="302" y="91" width="196" height="205" rx="20" fill="#0b1113"/>
+  <circle cx="332" cy="122" r="8" fill="#b6ff4a"/>
+  <text x="351" y="128" font-family="Arial, sans-serif" font-size="16" font-weight="700" fill="#e8edf7">SMARTER</text>
+  <text x="326" y="166" font-family="Arial, sans-serif" font-size="12" fill="#91a4aa">MOTOR STATUS</text>
+  <text x="326" y="202" font-family="Arial, sans-serif" font-size="28" font-weight="700" fill="#b6ff4a">ONLINE</text>
+  <rect x="326" y="226" width="148" height="10" rx="5" fill="#26363b"/>
+  <rect x="326" y="226" width="108" height="10" rx="5" fill="#5ce1ff"/>
+  <rect x="326" y="258" width="148" height="18" rx="9" fill="#b6ff4a"/>
+  <circle cx="400" cy="338" r="18" fill="#b6ff4a"/>
+  <text x="400" y="427" text-anchor="middle" font-family="Arial, sans-serif" font-size="16" letter-spacing="4" fill="#5ce1ff">MQTT CONTROL</text>
+</svg>

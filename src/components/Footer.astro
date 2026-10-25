@@ -2,48 +2,23 @@
 const year = new Date().getFullYear();
 ---
 
-<footer class="border-t border-gray-600 py-2 mt-6">
-  <div class="flex flex-col items-center mt-4">
-    <ul class="flex md:hidden gap-3">
+<footer class="mt-20 border-t border-white/10 pt-8">
+  <div class="flex flex-col items-center justify-between gap-4 text-sm text-mist/60 md:flex-row">
+    <p>© {year} Shivansh Shukla · Hyderabad</p>
+    <div class="flex gap-5">
+      <a class="hover:text-lime" href="mailto:theshivanshshukla@gmail.com">Email</a>
       <a
+        class="hover:text-lime"
         href="https://github.com/theprogrammerinyou"
         target="_blank"
-        rel="noreferrer">
-        <img
-          src="/images/github-icon.svg"
-          alt="GitHub Icon"
-          class="social-icon"
-        />
-      </a>
+        rel="noreferrer">GitHub</a
+      >
       <a
+        class="hover:text-lime"
         href="https://www.linkedin.com/in/shivansh-s-472710134/"
         target="_blank"
-        rel="noreferrer">
-        <img
-          src="/images/linkedin-icon.svg"
-          alt="LinkedIn Icon"
-          class="social-icon"
-        />
-      </a>
-    </ul>
-    <p class="text-gray-400 text-sm inline-flex mt-4 md:mt-0 text-center">
-      © {year} Shivansh Shukla. All rights reserved.
-    </p>
+        rel="noreferrer">LinkedIn</a
+      >
+    </div>
   </div>
 </footer>
-
-<style>
-  .social-icon {
-    font-size: 2.5rem;
-    width: 35px !important;
-    height: 35px !important;
-    filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(327deg)
-      brightness(109%) contrast(103%);
-    transition: filter 300ms;
-    cursor: pointer;
-  }
-  .social-icon:hover {
-    filter: invert(53%) sepia(89%) saturate(1045%) hue-rotate(90deg)
-      brightness(115%) contrast(111%);
-  }
-</style>

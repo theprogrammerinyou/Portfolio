@@ -3,13 +3,21 @@ interface Props {
   label: string;
   link: string;
   className?: string;
+  variant?: "solid" | "ghost";
 }
 
-const { label, link, className } = Astro.props;
+const { label, link, className = "", variant = "solid" } = Astro.props;
+const styles =
+  variant === "ghost"
+    ? "border border-white/15 bg-white/5 text-white hover:border-lime/50 hover:text-lime"
+    : "bg-lime text-ink hover:bg-white";
+const external = link.startsWith("http");
 ---
 
 <a
   href={link}
-  class={`w-fit inline-flex px-3 py-2 text-black bg-terminal-green cursor-pointer ${className}`}
+  class={`inline-flex items-center rounded-full px-5 py-2.5 text-sm font-semibold transition ${styles} ${className}`}
+  target={external ? "_blank" : undefined}
+  rel={external ? "noopener noreferrer" : undefined}
   >{label}</a
 >
